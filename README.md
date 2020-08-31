@@ -302,3 +302,13 @@ OpenID Connect遵循oAuth2.0协议流程，并在这个基础上提供了id toke
 + 默认流程和*OAuth*中的类似，只不过也是添加了*ID-Token*的相关内容。
 + *OIDC*的说明文档里很明确的说明了用户的相关信息都要使用**JWT**形式编码。在*JWT*中，不应该在载荷里面加入任何敏感的数据。如果传输的是用户的User ID。这个值实际上不是什么敏感内容，一般情况下被知道也是安全的。
 + 现在工业界已经**不推荐**使用*OAuth*默认模式，而推荐使用不带*client_Secret*的*授权码模式*。
+
+## 总结
+
++ Authentication（认证） 和 Authorization （授权），前者是证明请求者是身份，就像身份证一样，后者是为了获得权限。身份是区别于别人的证明，而权限是证明自己的特权。Authentication为了证明操作的这个人就是他本人，需要提供密码、短信验证码，甚至人脸识别。Authorization 则是不需要在所有的请求都需要验人，是在经过Authorization后得到一个Token，这就是Authorization。就像护照和签证一样。
++ 编码Base64Encode、签名HMAC、加密RSA。编码是为了更的传输，等同于明文，签名是为了信息不能被篡改，加密是为了不让别人看到是什么信息
++ JWT把 `uid` 放在 Token中目的是为了去掉状态，但不能让用户修改，所以需要签名
++ OAuth 协议有比所有认证协议有更为灵活完善的配置，如果使用AppID/AppSecret签名的方式，又需要做到可以有不同的权限和可以随时注销，那么你得开发一个像AWS的IAM这样的账号和密钥对管理的系统
++ 无论是哪种方式，我们都应该遵循HTTP的规范，把认证信息放在 `Authorization` HTTP 头中
++ 不要使用GET的方式在URL中放入secret之类的东西，因为很多proxy或gateway的软件会把整个URL记在Access Log文件中
++ 认证授权服务器（Authorization Server）和应用服务器（App Server）最好分开
