@@ -50,7 +50,6 @@
     + 拼接`Basic` ，放入`Authorization`头字段，就像这样：`Authorization Basic 字符串`。 示例：用户名：`Aladdin` ，密码：`OpenSesame` ，拼接后为`Aladdin:OpenSesame`，编码后`QWxhZGRpbjpPcGVuU2VzYW1l`，在HTTP头部里会是这样：`Authorization: Basic QWxhZGRpbjpPcGVuU2VzYW1l`。 Base64编码并非加密算法，其无法保证安全与隐私，仅用于将用户名和密码中的不兼容的字符转换为均与HTTP协议兼容的字符集
 + 服务端接受该认证后，如果认证成功则返回请求页面。如果用户凭据非法或无效，服务器可能再次返回401状态码，客户端可以再次提示用户输入密码
 
-![image-20200820221323314](/Users/qingmac/Library/Application Support/typora-user-images/image-20200820221323314.png)
 
 
 
@@ -115,7 +114,6 @@ OAuth 2.0 列举了四种授权类型，分别用于不同的场景
 + 在重定向的过程中，客户端拿到 code 与 `client_id`、`client_secret` 去授权服务器请求令牌，如果成功，直接请求资源服务器获取资源，整个过程，用户代理是不会拿到令牌 token 的
 + 客户端（APP）拿到令牌 token 后就可以向第三方的资源服务器请求资源了
 
-<img src="/Users/4paradigm/Library/Mobile%20Documents/com~apple~CloudDocs/%E7%AC%94%E8%AE%B0/%E7%AC%AC%E5%9B%9B%E8%8C%83%E5%BC%8F%E5%B7%A5%E4%BD%9C/%E8%AE%A4%E8%AF%81%E4%B8%8E%E6%8E%88%E6%9D%83/image-20200901020851472.png" alt="image-20200901020851472" style="zoom:50%;" />
 
 **隐式模式**
 
